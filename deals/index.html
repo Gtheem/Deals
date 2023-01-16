@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodgy Deals</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/header.css"/>
+</head>
+<body>
+    <div id="adminPanel" style="display: none;">
+        <section>
+            <label for="name">Name
+                <input type="text" id="name"/>
+            </label>
+            <label>Image SRC
+                <input type="text" id="src">
+            </label>
+            <label for="cost">Enter Price
+                <input type="text" id="cost">
+            </label>
+            <button id="submit">SUBMIT</button>
+        </section>
+    </div>
+    <div class="header">
+        <h1>Dowses dodgy deals</h1>
+        <ul id="header-list">
+            <li class="item"><a href="" class="itemLink">Deals</a></li>
+            <li class="item"><a href="" class="itemLink">About Us</a></li>
+            <li class="item"><a href="" class="itemLink">Contact</a></li>
+            <li><button id="adminBtn">ADMIN</button></li>
+        </ul>
+    </div>
+    <main>
+        <div id="popular-deals">
+            <div class="deal-item">
+                <img src="Iphone4.jpg"/>
+                <div class="deal-item-content">
+                    <h4>iPhone 4</h4>
+                    <p>£1</p>
+                </div>
+            </div>
+            <div class="deal-item">
+                <img src="tv.jpg"/>
+                <div class="deal-item-content">
+                    <h4>TV</h4>
+                    <p>10 botswanan pula</p>
+                </div>
+            </div>
+            <div class="deal-item">
+                <img src="laptop.jpg"/>
+                <div class="deal-item-content">
+                    <h4>laptop (2001)</h4>
+                    <p>50,000 Iraqi dinar</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        const adminBtn = document.getElementById('adminBtn')
+        const adminPanel = document.getElementById('adminPanel')
+        let adminDisplay = false
+
+        adminBtn.addEventListener('click', () => {
+            if(!adminDisplay){
+                adminDisplay = true
+                adminPanel.style.display = "inline";
+            } else if(adminDisplay == true){
+                adminDisplay = false
+                adminPanel.style.display = 'none'
+            }
+        })
+
+        const adminName = document.getElementById('name')
+        const adminCost = document.getElementById('cost')
+        const adminImage = document.getElementById('src')
+        const submitAdmin = document.getElementById('submit')
+
+        submitAdmin.addEventListener('click', () => {
+            createCard(adminName.value, adminCost.value, adminImage.value)
+        })
+
+        const popDeals = document.getElementById('popular-deals')
+
+
+        function createCard(name1, cost1, src1){
+            const mainDiv = document.createElement('div')
+            const secondDiv = document.createElement('div')
+            const image = document.createElement('img')
+            const name = document.createElement('h4')
+            const cost = document.createElement('p')
+
+            image.src=src1
+            image.style.width = '30vw'
+            name.textContent = name1
+            cost.textContent = cost1
+            mainDiv.classList.add('deal-item')
+            secondDiv.classList.add('deal-item-content')
+            secondDiv.appendChild(name)
+            secondDiv.appendChild(cost)
+            mainDiv.appendChild(image)
+            mainDiv.appendChild(secondDiv)
+            popDeals.appendChild(mainDiv)
+            
+        }
+    </script>
+</body>
+</html>
